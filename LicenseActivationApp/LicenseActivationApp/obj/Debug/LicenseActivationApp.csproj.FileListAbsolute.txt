@@ -1,0 +1,12 @@
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\bin\Debug\LicenseActivationApp.exe.config
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\bin\Debug\LicenseActivationApp.exe
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\bin\Debug\LicenseActivationApp.pdb
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.csproj.AssemblyReference.cache
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.FormLicenseMessage.resources
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.FormLogged.resources
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.FormLogin.resources
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.Properties.Resources.resources
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.csproj.GenerateResource.cache
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.csproj.CoreCompileInputs.cache
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.exe
+D:\Github\FernandoCalmet\CS-WinForms-License-Activation\LicenseActivationApp\LicenseActivationApp\obj\Debug\LicenseActivationApp.pdb
