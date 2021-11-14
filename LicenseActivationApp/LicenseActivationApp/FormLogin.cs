@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LicenseActivationApp.DataAccess;
+using System;
 using System.Windows.Forms;
 
 namespace LicenseActivationApp
@@ -7,6 +8,7 @@ namespace LicenseActivationApp
     {
         private string usernamePlaceholder;
         private string passwordPlaceholder;
+        private MasterRepository repository;
         public FormLogin()
         {
             InitializeComponent();
@@ -49,12 +51,26 @@ namespace LicenseActivationApp
                 return;
             }
 
-            Cache.UserCache.UserId = 1;
-            Cache.UserCache.UserName = txtUsername.Text;
-            Cache.UserCache.Password = txtPassword.Text;
-            this.Hide();
-            FormLogged formLogged = new FormLogged();
-            formLogged.Show();
+            var result = repository.Login(txtUsername.Text, txtPassword.Text);
+
+            if (result)
+            {
+                this.Hide();
+                FormLogged formLogged = new FormLogged();
+                formLogged.Show();
+            }
+            else
+            {
+                Logout();
+                MessageBox.Show("User does not exist.");
+            }
+        }
+
+        private void Logout()
+        {
+            Cache.UserCache.UserId = 0;
+            Cache.UserCache.UserName = "";
+            Cache.UserCache.Password = "";
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
