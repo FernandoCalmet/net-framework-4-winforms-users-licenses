@@ -46,6 +46,28 @@ namespace LicenseActivationApp.DataAccess
             }
         }
 
+        protected DataTable ExecuteReader(string commandText, List<SqlParameter> parameters)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = commandText;
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddRange(parameters.ToArray());
+                    SqlDataReader reader = command.ExecuteReader();
+                    using (var dataTable = new DataTable())
+                    {
+                        dataTable.Load(reader);
+                        reader.Dispose();
+                        return dataTable;
+                    }
+                }
+            }
+        }
+
         protected DataTable ExecuteReader(string commandText, List<SqlParameter> parameters, CommandType commandType)
         {
             dataTable = new DataTable();

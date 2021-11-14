@@ -24,12 +24,12 @@ namespace LicenseActivationApp.DataAccess
             return LicenseValidation(command);
         }
 
-            public Licenses PurchasedLicense()
+        public Licenses PurchasedLicense()
         {
             string command = "SELECT * FROM acquired_license WHERE user_id = @p_user_id";
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@p_user_id", Cache.UserCache.UserId));
-            var reader = ExecuteReader(command);
+            var reader = ExecuteReader(command, parameters);
             var licenses = new Licenses();
             foreach (DataRow item in reader.Rows)
             {
