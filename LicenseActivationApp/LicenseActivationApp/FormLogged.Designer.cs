@@ -30,19 +30,20 @@ namespace LicenseActivationApp
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblMessage = new System.Windows.Forms.Label();
+            this.lblId = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnCheckLicense = new System.Windows.Forms.Button();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lblMessage
+            // lblId
             // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(125, 87);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(50, 13);
-            this.lblMessage.TabIndex = 0;
-            this.lblMessage.Text = "Message";
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(12, 9);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(19, 13);
+            this.lblId.TabIndex = 0;
+            this.lblId.Text = "Id:";
             // 
             // timer1
             // 
@@ -58,13 +59,23 @@ namespace LicenseActivationApp
             this.btnCheckLicense.UseVisualStyleBackColor = true;
             this.btnCheckLicense.Click += new System.EventHandler(this.btnCheckLicense_Click);
             // 
+            // lblUsername
+            // 
+            this.lblUsername.AutoSize = true;
+            this.lblUsername.Location = new System.Drawing.Point(12, 32);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(58, 13);
+            this.lblUsername.TabIndex = 2;
+            this.lblUsername.Text = "Username:";
+            // 
             // FormLogged
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(304, 235);
+            this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnCheckLicense);
-            this.Controls.Add(this.lblMessage);
+            this.Controls.Add(this.lblId);
             this.Name = "FormLogged";
             this.Text = "FormLogged";
             this.Load += new System.EventHandler(this.FormLogged_Load);
@@ -75,8 +86,9 @@ namespace LicenseActivationApp
 
         #endregion
 
-        private System.Windows.Forms.Label lblMessage;
+        private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnCheckLicense;
+        private System.Windows.Forms.Label lblUsername;
     }
 }

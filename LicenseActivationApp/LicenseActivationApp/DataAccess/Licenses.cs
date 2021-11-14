@@ -16,7 +16,15 @@ namespace LicenseActivationApp.DataAccess
         public string LicenseKey { get; set; }
         public int UserId { get; set; }
 
-        public Licenses ValidatePurchase()
+        public bool ValidatePurchase()
+        {
+            string command = "SELECT * FROM acquired_license WHERE user_id = @p_user_id";
+            parameters = new List<SqlParameter>();
+            parameters.Add(new SqlParameter("@p_user_id", Cache.UserCache.UserId));
+            return LicenseValidation(command);
+        }
+
+            public Licenses PurchasedLicense()
         {
             string command = "SELECT * FROM acquired_license WHERE user_id = @p_user_id";
             parameters = new List<SqlParameter>();
@@ -52,7 +60,7 @@ namespace LicenseActivationApp.DataAccess
 
         public bool ValidateLicense()
         {
-            string command = "SELECT * FROM acquired_license al INNER JOIN license l ON l.id = al.license_id WHERE al.user_id = @p_user_id AND l.key = @p_license_key";
+            string command = "SELECT * FROM acquired_license al INNER JOIN license l ON l.id = al.license_id WHERE al.user_id = @p_user_id AND l.[key] = @p_license_key";
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@p_user_id", Cache.UserCache.UserId));
             parameters.Add(new SqlParameter("@p_license_key", LicenseKey));

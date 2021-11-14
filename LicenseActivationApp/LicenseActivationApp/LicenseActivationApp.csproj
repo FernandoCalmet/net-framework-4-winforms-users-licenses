@@ -47,9 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\UserCache.cs" />
+    <Compile Include="DataAccess\IUserRepository.cs" />
     <Compile Include="DataAccess\Licenses.cs" />
     <Compile Include="DataAccess\MasterRepository.cs" />
     <Compile Include="DataAccess\Repository.cs" />
+    <Compile Include="DataAccess\UserRepository.cs" />
     <Compile Include="FormLicenseMessage.cs">
       <SubType>Form</SubType>
     </Compile>

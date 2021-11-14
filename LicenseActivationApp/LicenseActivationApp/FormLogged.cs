@@ -11,6 +11,8 @@ namespace LicenseActivationApp
         public FormLogged()
         {
             InitializeComponent();
+            lblId.Text = Convert.ToString(Cache.UserCache.UserId);
+            lblUsername.Text = Cache.UserCache.UserName;
         }
 
         private void FormLogged_Load(object sender, EventArgs e)
@@ -30,7 +32,7 @@ namespace LicenseActivationApp
             if(counter == 5)
             {
                 var data = new DataAccess.Licenses();
-                data = dataLicenses.ValidatePurchase();
+                data = dataLicenses.PurchasedLicense();
                 if (dataLicenses.ValidateLicense() && data.Status == "Activated" && data.Activation > 0)
                 {
                     if(data.MacAddress == dataLicenses.GetMacAddress())

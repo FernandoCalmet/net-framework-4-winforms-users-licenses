@@ -8,7 +8,7 @@ namespace LicenseActivationApp
     {
         private string usernamePlaceholder;
         private string passwordPlaceholder;
-        private MasterRepository repository;
+        private readonly IUserRepository repository = new UserRepository();
         public FormLogin()
         {
             InitializeComponent();
@@ -51,19 +51,25 @@ namespace LicenseActivationApp
                 return;
             }
 
-            var result = repository.Login(txtUsername.Text, txtPassword.Text);
+            Cache.UserCache.UserId = 1;
+            Cache.UserCache.UserName = txtUsername.Text;
+            Cache.UserCache.Password = txtPassword.Text;
+            this.Hide();
+            FormLogged formLogged = new FormLogged();
+            formLogged.Show();
 
-            if (result)
-            {
-                this.Hide();
-                FormLogged formLogged = new FormLogged();
-                formLogged.Show();
-            }
-            else
-            {
-                Logout();
-                MessageBox.Show("User does not exist.");
-            }
+            //var result = repository.Login(txtUsername.Text, txtPassword.Text); 
+            //if (result)
+            //{
+            //    this.Hide();
+            //    FormLogged formLogged = new FormLogged();
+            //    formLogged.Show();
+            //}
+            //else
+            //{
+            //    Logout();
+            //    MessageBox.Show("User does not exist.");
+            //}
         }
 
         private void Logout()

@@ -7,27 +7,7 @@ namespace LicenseActivationApp.DataAccess
     public abstract class MasterRepository : Repository
     {
         protected List<SqlParameter> parameters;
-
-        public bool Login(string username, string password)
-        {
-            string commandText = "SELECT * FROM user WHERE @username = username AND @password = password";
-            var parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@username", username));
-            parameters.Add(new SqlParameter("@password", password));
-            var table = ExecuteReader(commandText, parameters);
-            if (table.Rows.Count > 0)
-            {
-                foreach (DataRow row in table.Rows)
-                {
-                    Cache.UserCache.UserId = (int)(row[0]);
-                    Cache.UserCache.UserName = row[1].ToString();
-                    Cache.UserCache.Password = row[2].ToString();
-                }
-                return true;
-            }
-            else
-                return false;
-        }
+        private DataTable dataTable;
 
         protected void ExecuteNonQuery(string commandText)
         {
@@ -66,8 +46,9 @@ namespace LicenseActivationApp.DataAccess
             }
         }
 
-        protected DataTable ExecuteReader(string commandText, List<SqlParameter> paremeters)
+        protected DataTable ExecuteReader(string commandText, List<SqlParameter> parameters, CommandType commandType)
         {
+            dataTable = new DataTable();
             using (var connection = GetConnection())
             {
                 connection.Open();
@@ -75,17 +56,15 @@ namespace LicenseActivationApp.DataAccess
                 {
                     command.Connection = connection;
                     command.CommandText = commandText;
-                    command.CommandType = CommandType.Text;
-                    command.Parameters.Add(parameters);
-                    SqlDataReader reader = command.ExecuteReader();
-                    using (var dataTable = new DataTable())
+                    command.CommandType = commandType;
+                    command.Parameters.AddRange(parameters.ToArray());
+                    using (var reader = command.ExecuteReader())
                     {
                         dataTable.Load(reader);
-                        reader.Dispose();
-                        return dataTable;
                     }
                 }
             }
+            return dataTable;
         }
 
         protected bool LicenseValidation(string commandText)

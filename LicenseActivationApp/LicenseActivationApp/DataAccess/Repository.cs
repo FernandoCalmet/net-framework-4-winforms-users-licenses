@@ -8,7 +8,8 @@ namespace LicenseActivationApp.DataAccess
 
         public Repository()
         {
-            connectionString = @"Data Source=(localdb)\\mssqllocaldb;Initial Catalog=LicenseDB;Integrated Security=true";
+            //connectionString = @"Data Source=(localdb)\\mssqllocaldb;Initial Catalog=LicensesDB;Integrated Security=true";
+            connectionString = @"Data Source=DESKTOP-HOQ564O\KHANAKAT;Initial Catalog=LicensesDB;Integrated Security=true";
         }
 
         protected SqlConnection GetConnection()
