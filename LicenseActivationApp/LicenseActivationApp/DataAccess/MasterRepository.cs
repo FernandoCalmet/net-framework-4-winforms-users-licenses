@@ -89,7 +89,7 @@ namespace LicenseActivationApp.DataAccess
             return dataTable;
         }
 
-        protected bool LicenseValidation(string commandText)
+        protected bool LicenseValidation(string commandText, List<SqlParameter> parameters)
         {
             using (var connection = GetConnection())
             {
@@ -99,10 +99,11 @@ namespace LicenseActivationApp.DataAccess
                     command.Connection = connection;
                     command.CommandText = commandText;
                     command.CommandType = CommandType.Text;
-                    foreach (SqlParameter param in parameters)
-                    {
-                        command.Parameters.Add(param);
-                    }
+                    command.Parameters.AddRange(parameters.ToArray());
+                    //foreach (SqlParameter param in parameters)
+                    //{
+                    //    command.Parameters.Add(param);
+                    //}
                     SqlDataReader reader = command.ExecuteReader();
                     if (reader.HasRows)
                         return true;

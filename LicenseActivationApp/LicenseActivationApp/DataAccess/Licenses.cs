@@ -21,7 +21,7 @@ namespace LicenseActivationApp.DataAccess
             string command = "SELECT * FROM acquired_license WHERE user_id = @p_user_id";
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@p_user_id", Cache.UserCache.UserId));
-            return LicenseValidation(command);
+            return LicenseValidation(command, parameters);
         }
 
         public Licenses PurchasedLicense()
@@ -33,13 +33,13 @@ namespace LicenseActivationApp.DataAccess
             var licenses = new Licenses();
             foreach (DataRow item in reader.Rows)
             {
-                licenses.Activation = Convert.ToInt32(item[0]);
-                licenses.Status = item[1].ToString();
-                licenses.MacAddress = item[2].ToString();
-                licenses.PurchaseDate = Convert.ToDateTime(item[3]);
-                licenses.ExpirationDate = Convert.ToDateTime(item[4]);
-                licenses.LicenseKey = item[5].ToString();
-                licenses.UserId = Convert.ToInt32(item[6]);
+                licenses.Activation = Convert.ToInt32(item[1]);
+                licenses.Status = item[2].ToString();
+                licenses.MacAddress = item[3].ToString();
+                licenses.PurchaseDate = Convert.ToDateTime(item[4]);
+                licenses.ExpirationDate = Convert.ToDateTime(item[5]);
+                licenses.LicenseKey = item[6].ToString();
+                licenses.UserId = Convert.ToInt32(item[7]);
 
             }
 
@@ -60,11 +60,14 @@ namespace LicenseActivationApp.DataAccess
 
         public bool ValidateLicense()
         {
-            string command = "SELECT * FROM acquired_license al INNER JOIN license l ON l.id = al.license_id WHERE al.user_id = @p_user_id AND l.[key] = @p_license_key";
+            string command = "SELECT al.id, al.activation, al.status, al.mac_address, al.purchase_date, al.expiration_date, al.license_id, al.user_id " +
+                "FROM acquired_license al " +
+                "INNER JOIN license l ON l.id = al.license_id " +
+                "WHERE al.user_id = @p_user_id AND l.[key] = @p_license_key";
             parameters = new List<SqlParameter>();
             parameters.Add(new SqlParameter("@p_user_id", Cache.UserCache.UserId));
             parameters.Add(new SqlParameter("@p_license_key", LicenseKey));
-            return LicenseValidation(command);
+            return LicenseValidation(command, parameters);
         }
 
         public string GetMacAddress()
