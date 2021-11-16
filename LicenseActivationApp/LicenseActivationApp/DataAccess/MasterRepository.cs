@@ -25,6 +25,23 @@ namespace LicenseActivationApp.DataAccess
             }
         }
 
+        protected void ExecuteNonQuery(string commandText, List<SqlParameter> parameters)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = commandText;
+                    command.CommandType = CommandType.Text;
+                    command.Parameters.AddRange(parameters.ToArray());
+                    command.ExecuteNonQuery();
+                    parameters.Clear();
+                }
+            }
+        }
+
         protected DataTable ExecuteReader(string commandText)
         {
             using (var connection = GetConnection())

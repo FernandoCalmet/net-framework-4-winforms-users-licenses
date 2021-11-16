@@ -58,7 +58,7 @@ namespace LicenseActivationApp.DataAccess
             parameters.Add(new SqlParameter("@p_user_id", Cache.UserCache.UserId));
             parameters.Add(new SqlParameter("@p_status", Status));
             parameters.Add(new SqlParameter("@p_mac_address", MacAddress));
-            ExecuteNonQuery(command);
+            ExecuteNonQuery(command, parameters);
 
             return "License Activated Successfully";
         }

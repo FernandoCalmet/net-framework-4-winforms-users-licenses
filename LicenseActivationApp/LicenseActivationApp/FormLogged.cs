@@ -5,7 +5,7 @@ namespace LicenseActivationApp
 {
     public partial class FormLogged : Form
     {
-        DataAccess.Licenses dataLicenses = new DataAccess.Licenses();
+        DataAccess.Licenses data = new DataAccess.Licenses();
         public int counter = 0;
 
         public FormLogged()
@@ -22,7 +22,7 @@ namespace LicenseActivationApp
 
         private void btnCheckLicense_Click(object sender, EventArgs e)
         {
-            FormLicenseMessage formLicenseMessage = new FormLicenseMessage();
+            FormLicenseMessage formLicenseMessage = new FormLicenseMessage(data);
             formLicenseMessage.ShowDialog();
         }
 
@@ -31,22 +31,21 @@ namespace LicenseActivationApp
             counter++;
             if(counter == 5)
             {
-                var data = new DataAccess.Licenses();
-                data = dataLicenses.PurchasedLicense();
-                if (dataLicenses.ValidateLicense() && data.Status == "Activated" && data.Activation > 0)
+                data = data.PurchasedLicense();
+                if (data.ValidateLicense() && data.Status == "Activated" && data.Activation > 0)
                 {
-                    if(data.MacAddress == dataLicenses.GetMacAddress())
+                    if (data.MacAddress == data.GetMacAddress())
                     {
                         MessageBox.Show("License Activated OK!");
                     }
                     else
                     {
                         MessageBox.Show("Sorry your license is not activated!");
-                    }                    
+                    }
                 }
                 else
                 {
-                    FormLicenseMessage formLicenseMessage = new FormLicenseMessage();
+                    FormLicenseMessage formLicenseMessage = new FormLicenseMessage(data);
                     formLicenseMessage.ShowDialog();
                 }
                 timer1.Stop();

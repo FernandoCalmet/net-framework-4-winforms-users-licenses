@@ -5,21 +5,22 @@ namespace LicenseActivationApp
 {
     public partial class FormLicenseMessage : Form
     {
-        DataAccess.Licenses dataLicenses = new DataAccess.Licenses();
+        DataAccess.Licenses data;
 
-        public FormLicenseMessage()
+        public FormLicenseMessage(DataAccess.Licenses data)
         {
             InitializeComponent();
+            this.data = data;
         }
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
-            dataLicenses.LicenseKey = txtActivationKey.Text;
-            if (dataLicenses.ValidateLicense())
+            data.LicenseKey = txtActivationKey.Text;
+            if (data.ValidateLicense())
             {
-                dataLicenses.Status = "Activated";
-                dataLicenses.MacAddress = dataLicenses.GetMacAddress();
-                MessageBox.Show(dataLicenses.ActivateLicense());
+                data.Status = "Activated";
+                data.MacAddress = data.GetMacAddress();
+                MessageBox.Show(data.ActivateLicense());
             }
             else
             {
