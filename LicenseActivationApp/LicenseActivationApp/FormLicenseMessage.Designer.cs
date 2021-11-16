@@ -80,6 +80,7 @@ namespace LicenseActivationApp
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtActivationKey);
             this.Name = "FormLicenseMessage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormLicenseMessage";
             this.ResumeLayout(false);
             this.PerformLayout();

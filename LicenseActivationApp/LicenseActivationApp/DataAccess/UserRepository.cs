@@ -8,11 +8,11 @@ namespace LicenseActivationApp.DataAccess
     {
         public bool Login(string username, string password)
         {
-            string commandText = "SELECT * FROM user WHERE @username = username AND @password = password";
+            string commandText = "SELECT * FROM [user] WHERE username = @p_username AND password = @p_password";
             CommandType commandType = CommandType.Text;
             var parameters = new List<SqlParameter>();
-            parameters.Add(new SqlParameter("@username", username));
-            parameters.Add(new SqlParameter("@password", password));
+            parameters.Add(new SqlParameter("@p_username", username));
+            parameters.Add(new SqlParameter("@p_password", password));
             var table = ExecuteReader(commandText, parameters, commandType);
             if (table.Rows.Count > 0)
             {

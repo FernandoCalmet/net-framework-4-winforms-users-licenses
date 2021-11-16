@@ -90,6 +90,7 @@ namespace LicenseActivationApp
             this.Controls.Add(this.btnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form Login";
             this.ResumeLayout(false);
             this.PerformLayout();

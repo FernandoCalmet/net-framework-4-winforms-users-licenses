@@ -77,6 +77,7 @@ namespace LicenseActivationApp
             this.Controls.Add(this.btnCheckLicense);
             this.Controls.Add(this.lblId);
             this.Name = "FormLogged";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormLogged";
             this.Load += new System.EventHandler(this.FormLogged_Load);
             this.ResumeLayout(false);
