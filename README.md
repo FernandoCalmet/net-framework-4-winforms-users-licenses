@@ -20,7 +20,7 @@ Este proyecto es una muestra de una aplicación de login con activación de lice
 Clonar el repositorio.
 
 ```bash
-gh repo clone FernandoCalmet/CS-WinForms-License-Activation
+gh repo clone FernandoCalmet/NET-Framework-4-WinForms-Users-Licenses
 ```
 
 Ejecutar aplicación.
